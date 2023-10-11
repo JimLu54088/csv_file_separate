@@ -1,0 +1,35 @@
+import java.io.*;
+
+public class CSVSplitter {
+    public static void main(String[] args) {
+        String inputFilePath = "C:\\path\\to\\your\\input.csv";
+        String outputDirectoryPath = "C:\\path\\to\\output\\directory\\";
+        String outputFilePrefix = "01_output_"; // 修改文件前缀
+        int batchSize = 50000;
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
+            String line;
+            int batchCounter = 1;
+            int recordCounter = 0;
+            FileWriter writer = new FileWriter(outputDirectoryPath + String.format("%02d", batchCounter) + "_" + outputFilePrefix + ".csv");
+            writer.write("store no,store name\n"); // Add header
+
+            while ((line = reader.readLine()) != null) {
+                writer.write(line + "\n");
+                recordCounter++;
+
+                if (recordCounter >= batchSize) {
+                    writer.close();
+                    recordCounter = 0;
+                    batchCounter++;
+                    writer = new FileWriter(outputDirectoryPath + String.format("%02d", batchCounter) + "_" + outputFilePrefix + ".csv");
+                    writer.write("store no,store name\n"); // Add header
+                }
+            }
+            writer.close(); // Close the last file
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
