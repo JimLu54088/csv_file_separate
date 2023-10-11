@@ -4,7 +4,7 @@ public class CSVSplitter {
     public static void main(String[] args) {
         String inputFilePath = "C:\\path\\to\\your\\input.csv";
         String outputDirectoryPath = "C:\\path\\to\\output\\directory\\";
-        String outputFilePrefix = "01_output_"; // 修改文件前缀
+        String outputFilePrefix = "_output_insert"; // 修改文件前缀
         int batchSize = 50000;
 
         try {
