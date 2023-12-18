@@ -1,5 +1,4 @@
 package logChange;
-//String folderPath = "D:\\test_files\\work231215\\";
 
 import java.io.BufferedReader;
 import java.io.File;
